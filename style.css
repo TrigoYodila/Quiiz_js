@@ -1,0 +1,90 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: linear-gradient(
+    90deg,
+    #85f6b8 0%,
+    rgba(142, 217, 235, 0.85) 99.84%
+  );
+  background-blend-mode: darken;
+}
+/* style de la première page */
+.global {
+  /* height: 500px; */
+  width: 40%;
+  background: green;
+  margin: auto;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  background: #fff;
+}
+.title {
+  text-align: center;
+  margin: 20px 0 0 0;
+  padding: 20px;
+}
+h1 {
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 32px;
+  color: #555;
+  margin: 50px 0 10px 0;
+}
+.paragraphe {
+  text-align: center;
+  padding: 0 50px;
+}
+p {
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 32px;
+  text-align: center;
+  color: #555555;
+}
+
+.form {
+  margin: 0 40px;
+}
+/* formulaire */
+label {
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #555555;
+  margin-bottom: 10px;
+}
+input {
+  outline: none;
+  width: 100%;
+  padding: 21px 0 21px 15px;
+  border: 1px solid #dddddd;
+  margin-bottom: 30px;
+}
+input:hover {
+  outline: none;
+  border: 1px solid red;
+}
+.button {
+  text-align: center;
+}
+button {
+  background: #028a3d;
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+  color: #ffffff;
+  height: 59px;
+  width: 226px;
+  border: none;
+  margin-bottom: 111px;
+}
