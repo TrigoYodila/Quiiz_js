@@ -14,6 +14,10 @@
       integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
       crossorigin="anonymous"
     />
+    <script
+      src="https://kit.fontawesome.com/4056f06b22.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -29,29 +33,113 @@
         </p>
       </div>
       <div class="form">
-        <form>
-          <div class="input-name">
-            <label for="nom" class="label-name">Nom</label><br />
-            <input
-              type="text"
-              class="name-class"
-              id="nom"
-              placeholder="Joseph"
-            />
+        <div class="input-name">
+          <label for="nom" class="label-name">Nom</label><br />
+          <input
+            type="text"
+            class="name-class"
+            id="nom"
+            placeholder="Joseph"
+          /><br />
+          <div class="erreur">
+            <span class="text-erreur erreur-nom"
+              >N'oubliez pas de renseigner votre nom avant de commencer le
+              Quiz</span
+            >
           </div>
-          <div class="input-email">
-            <label for="email" class="label-email">Email</label><br />
-            <input
-              type="email"
-              class="email-class"
-              id="email"
-              placeholder="joseph@kinshasadigital.com"
-            />
+        </div>
+
+        <div class="input-email">
+          <label for="email" class="label-email">Email</label><br />
+          <input
+            type="email"
+            class="email-class"
+            id="email"
+            placeholder="joseph@kinshasadigital.com"
+          /><br />
+          <div class="erreur">
+            <span class="text-erreur erreur-mail"
+              >N'oubliez pas de renseigner votre email avant de commencer le
+              Quiz</span
+            >
           </div>
-          <div class="button">
-            <button type="submit">Commencer</button>
-          </div>
-        </form>
+        </div>
+
+        <div class="button">
+          <button id="btcommencer">Commencer</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="global-questions">
+      <div class="question"><p class="question-text">Question</p></div>
+      <div class="timer">
+        <span class="question-number">1/15</span>
+        <span class="time-counter">60</span>
+      </div>
+      <div class="progresscontainer" id="progresscontainer">
+        <div class="progress" id="progress"></div>
+      </div>
+
+      <div class="options" id="radios">
+        <div class="div-opt">
+          <input
+            type="radio"
+            name="reponse"
+            id="option1"
+            value="option1"
+          /><label for="option1" class="label-option option1">option1</label>
+        </div>
+
+        <div class="div-opt">
+          <input
+            type="radio"
+            name="reponse"
+            id="option2"
+            value="option2"
+          /><label for="option2" class="label-option option2">option2</label>
+        </div>
+
+        <div class="div-opt">
+          <input
+            type="radio"
+            name="reponse"
+            id="option3"
+            value="option3"
+          /><label for="option3" class="label-option option3">option3</label>
+        </div>
+
+        <div class="div-opt">
+          <input
+            type="radio"
+            name="reponse"
+            id="option4"
+            value="option4"
+          /><label for="option4" class="label-option option4">option4</label>
+        </div>
+      </div>
+
+      <div class="navigation">
+        <button class="quitter">Quitter</button>
+        <button class="suivant" disabled>Suivant</button>
+      </div>
+    </div>
+
+    <div class="resultat">
+      <div class="result-name">
+        <h1 class="name-resultat">JavaScript Quiz</h1>
+      </div>
+      <div class="result-email">
+        <p class="mail-resultat">trigoyodila1996@gmail.com</p>
+      </div>
+      <div class="result-logo">
+        <i></i>
+      </div>
+      <div class="result-text">
+        <span class="text-result">13/15</span>
+      </div>
+      <div class="button">
+        <button id="btacceuil" class="btacceuil">Accueil</button>
       </div>
     </div>
 
