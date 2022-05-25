@@ -268,36 +268,32 @@ btnCommencer.addEventListener("click", function (event) {
 });
 
 function valid() {
-//   const erreurName = document.querySelector(".erreur-nom");
-//   const erreurEmail = document.querySelector(".erreur-mail");
-//   alert("taille " + nom.value.length);
-//   alert("rep " + email.value.includes("@gmail"));
-//   if (nom.value == "") {
-//     erreurName.style.display = "block";
-//     nom.classList.add("inputborder");
-//     //alert("vide");
-//   }
-//   if (email.value == "") {
-//     //alert("vide");
-//     erreurEmail.style.display = "block";
-//     email.classList.add("inputborder");
-//   }
-//   if (nom.value.length > 20) {
-//     erreurName.style.display = "block";
-//     erreurName.textContent = "Votre nom ne doit pas dépasser 25 caractères";
-//     nom.classList.add("inputborder");
-//   }
-//   if (email.value != "" && !email.value.includes("@gmail")) {
-//     erreurEmail.style.display = "block";
-//     erreurEmail.textContent = "Votre email n'est pas valide";
-//     email.classList.add("inputborder");
-//   }
-//   if (nom.value != "" && email.value.includes("@gmail")) {
-//     content.style.display = "none";
-//     globalop.style.display = "block";
-//     debuter();
-//   }
-// }
+  const erreurName = document.querySelector(".erreur-nom");
+  const erreurEmail = document.querySelector(".erreur-mail");
+  if (nom.value == "") {
+    erreurName.style.display = "block";
+    nom.classList.add("inputborder");
+  }
+  if (email.value == "") {
+    erreurEmail.style.display = "block";
+    email.classList.add("inputborder");
+  }
+  if (nom.value.length > 20) {
+    erreurName.style.display = "block";
+    erreurName.textContent = "Votre nom ne doit pas dépasser 25 caractères";
+    nom.classList.add("inputborder");
+  }
+  if (email.value != "" && !email.value.includes("@gmail")) {
+    erreurEmail.style.display = "block";
+    erreurEmail.textContent = "Votre email n'est pas valide";
+    email.classList.add("inputborder");
+  }
+  if (nom.value != "" && email.value.includes("@gmail")) {
+    content.style.display = "none";
+    globalop.style.display = "block";
+    debuter();
+  }
+}
 //button accueil
 accueil.addEventListener("click", function () {
   content.style.display = "block";
