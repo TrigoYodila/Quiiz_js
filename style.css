@@ -118,6 +118,7 @@ input:hover {
 }
 
 .options .div-opt {
+  position: relative;
   width: 100%;
   height: 50px;
   outline: none;
@@ -125,11 +126,21 @@ input:hover {
   border: 1px solid #dddddd;
   margin-bottom: 20px;
 }
-
+.bulle {
+  position: absolute;
+  display: block;
+  width: 22px;
+  height: 22px;
+  background: #028a3d;
+  border-radius: 50%;
+  top: 10px;
+  left: 10px;
+  /* display: none; */
+}
 .options input[type="radio"] {
   width: 20px;
   height: 20px;
-  outline: none;
+  /* outline: none; */
 }
 
 .label-option {
@@ -258,4 +269,8 @@ input:hover {
 }
 .name-resultat {
   font-size: 40px;
+}
+.borderradio {
+  border: 1px solid #028a3d !important;
+  height: 50px;
 }

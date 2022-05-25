@@ -206,16 +206,18 @@ let NbreEchec = 0;
 let identifiants = [];
 //Button suivant
 next.addEventListener("click", () => {
+  //annuler le cochage
+  resetborder();
+  resetbulle();
+
   let resfinal = 0;
   debuter(); /* Redemarrage du compteur */
-  // start = false;
   count = 0;
   if (id < 14) {
     id++;
     let result = ischecked(id - 1);
     //Test de l'assertion coché
     if (result == true) NbreReussite++;
-
     iterate(id);
     text.textContent = id + 1 + "/15";
     identifiants.push(id);
@@ -255,23 +257,7 @@ quitter.addEventListener("click", function () {
 /* appel de la deuxième page */
 btnCommencer.addEventListener("click", function (event) {
   event.preventDefault();
-  const erreurName = document.querySelector(".erreur-nom");
-  const erreurEmail = document.querySelector(".erreur-mail");
-  if (nom.value == "") {
-    erreurName.style.display = "block";
-    nom.classList.add("inputborder");
-    //alert("vide");
-  }
-  if (email.value == "") {
-    //alert("vide");
-    erreurEmail.style.display = "block";
-    email.classList.add("inputborder");
-  }
-  if (nom.value != "" && email.value != "") {
-    content.style.display = "none";
-    globalop.style.display = "block";
-    debuter();
-  }
+  valid();
   //disparaitre les textes après ecriture
   nom.addEventListener("keypress", function () {
     erreurName.style.display = "none";
@@ -280,6 +266,38 @@ btnCommencer.addEventListener("click", function (event) {
     erreurEmail.style.display = "none";
   });
 });
+
+function valid() {
+//   const erreurName = document.querySelector(".erreur-nom");
+//   const erreurEmail = document.querySelector(".erreur-mail");
+//   alert("taille " + nom.value.length);
+//   alert("rep " + email.value.includes("@gmail"));
+//   if (nom.value == "") {
+//     erreurName.style.display = "block";
+//     nom.classList.add("inputborder");
+//     //alert("vide");
+//   }
+//   if (email.value == "") {
+//     //alert("vide");
+//     erreurEmail.style.display = "block";
+//     email.classList.add("inputborder");
+//   }
+//   if (nom.value.length > 20) {
+//     erreurName.style.display = "block";
+//     erreurName.textContent = "Votre nom ne doit pas dépasser 25 caractères";
+//     nom.classList.add("inputborder");
+//   }
+//   if (email.value != "" && !email.value.includes("@gmail")) {
+//     erreurEmail.style.display = "block";
+//     erreurEmail.textContent = "Votre email n'est pas valide";
+//     email.classList.add("inputborder");
+//   }
+//   if (nom.value != "" && email.value.includes("@gmail")) {
+//     content.style.display = "none";
+//     globalop.style.display = "block";
+//     debuter();
+//   }
+// }
 //button accueil
 accueil.addEventListener("click", function () {
   content.style.display = "block";
@@ -330,19 +348,19 @@ function debuter() {
     if (counter == -1) {
       clearInterval(intervalId);
       //recupère contenu label(radio) 1
-      const val = op1lbl.textContent;
       for (let i = 0; i < Questions.length; i++) {
-        if (val == Questions[i].a[0].text) {
+        if (op1lbl.textContent == Questions[i].a[0].text) {
           var takeid = Questions[i].id;
         }
       }
-      // alert("takeid " + takeid + "val " + val);
+      //si on a pas atteint la fin
       if (id < 14) {
         iterate(takeid + 1);
         text.textContent = takeid + 2 + "/15";
         debuter();
         id++;
         alert("takeid " + takeid + " id " + id);
+        reset_radio("radios");
       } else {
         Affichage();
       }
@@ -351,21 +369,44 @@ function debuter() {
       progress.style.width = counter * 1.6667 + "%";
     }
   }
-  intervalId = setInterval(progression, 60); //1000
+  intervalId = setInterval(progression, 1000); //1000
 }
 
 //rendre le bouton suivant accessible
 const inputs = document.querySelectorAll("input");
+// const bulle = document.querySelector(".spanall");
 for (let i = 0; i < inputs.length; i++) {
   if (inputs[i].type == "radio") {
     inputs[i].addEventListener("click", function () {
       const next = document.querySelector(".suivant");
+      const valclass = document.querySelector(".S" + this.id);
+      // alert("valclass = " + valclass);
       //récuperation de la classe pas d'opacity
       if (next.disabled == true) {
         next.style.opacity = "1";
         next.disabled = false;
       }
+      //si le div contient la classe border (pour cibler le radio qui ale bordure)
+      resetborder();
+      resetbulle();
+      if (this.checked == true) {
+        alert("parent " + this.parentNode);
+        this.parentNode.classList.add("borderradio");
+        valclass.classList.add("bulle");
+      }
     });
+  }
+}
+function resetborder() {
+  if (document.querySelector(".div-opt.borderradio")) {
+    document
+      .querySelector(".div-opt.borderradio")
+      .classList.remove("borderradio");
+  }
+}
+function resetbulle() {
+  if (document.querySelector(".all.bulle")) {
+    document.querySelector(".all.bulle").classList.remove("bulle");
   }
 }
 //fonction pour rendre le boutton suivant inaccessible
@@ -379,4 +420,9 @@ function inaccessButton() {
     next.disabled = true;
     next.style.opacity = "0.4";
   }
+}
+//fonction d'interdiction des chiffres
+function makeletters(input) {
+  let regex = /[^a-z]/gi;
+  input.value = input.value.replace(regex, "");
 }
