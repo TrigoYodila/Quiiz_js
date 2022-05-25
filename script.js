@@ -201,9 +201,8 @@ const email = document.querySelector(".email-class");
 // const mailR = document.querySelector("mail-resultat");
 
 let id = 0;
-let NbreReussite = 0;
-let NbreEchec = 0;
-let identifiants = [];
+var NbreReussite = 0;
+var result;
 //Button suivant
 next.addEventListener("click", () => {
   //annuler le cochage
@@ -215,12 +214,11 @@ next.addEventListener("click", () => {
   count = 0;
   if (id < 14) {
     id++;
-    let result = ischecked(id - 1);
+    result = ischecked(id - 1);
     //Test de l'assertion coché
     if (result == true) NbreReussite++;
     iterate(id);
     text.textContent = id + 1 + "/15";
-    identifiants.push(id);
     //appel de la méthode inaccess
   } else {
     Affichage();
@@ -267,26 +265,34 @@ btnCommencer.addEventListener("click", function (event) {
   });
 });
 
+function refresh() {
+  location.reload();
+}
+
 function valid() {
   const erreurName = document.querySelector(".erreur-nom");
   const erreurEmail = document.querySelector(".erreur-mail");
   if (nom.value == "") {
     erreurName.style.display = "block";
     nom.classList.add("inputborder");
+    setTimeout(refresh, 1500);
   }
   if (email.value == "") {
     erreurEmail.style.display = "block";
     email.classList.add("inputborder");
+    setTimeout(refresh, 1500);
   }
   if (nom.value.length > 20) {
     erreurName.style.display = "block";
     erreurName.textContent = "Votre nom ne doit pas dépasser 25 caractères";
     nom.classList.add("inputborder");
+    setTimeout(refresh, 1500);
   }
   if (email.value != "" && !email.value.includes("@gmail")) {
     erreurEmail.style.display = "block";
     erreurEmail.textContent = "Votre email n'est pas valide";
     email.classList.add("inputborder");
+    setTimeout(refresh, 1500);
   }
   if (nom.value != "" && email.value.includes("@gmail")) {
     content.style.display = "none";
@@ -330,6 +336,7 @@ function ischecked(id) {
 }
 /* function progress bar */
 var intervalId = null;
+
 function debuter() {
   //s'il existe une intervalle annule
   if (intervalId) {
@@ -351,12 +358,17 @@ function debuter() {
       }
       //si on a pas atteint la fin
       if (id < 14) {
+        resetborder();
+        resetbulle();
         iterate(takeid + 1);
         text.textContent = takeid + 2 + "/15";
         debuter();
         id++;
-        alert("takeid " + takeid + " id " + id);
+        result = ischecked(id - 1); //
+        //Test de l'assertion coché
+        if (result == true) NbreReussite++; //
         reset_radio("radios");
+        alert("reussite " + NbreReussite + "result " + result + " id " + id + " takeid "+takeid);
       } else {
         Affichage();
       }
@@ -365,7 +377,7 @@ function debuter() {
       progress.style.width = counter * 1.6667 + "%";
     }
   }
-  intervalId = setInterval(progression, 1000); //1000
+  intervalId = setInterval(progression, 100); //1000
 }
 
 //rendre le bouton suivant accessible
