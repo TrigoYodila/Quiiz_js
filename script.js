@@ -201,15 +201,16 @@ const email = document.querySelector(".email-class");
 // const mailR = document.querySelector("mail-resultat");
 
 let id = 0;
-var NbreReussite = 0;
-var NbreEchec = 0;
+let NbreReussite = 0;
+let NbreEchec = 0;
+let identifiants = [];
 //Button suivant
 next.addEventListener("click", () => {
   let resfinal = 0;
   debuter(); /* Redemarrage du compteur */
   // start = false;
   count = 0;
-  if (id <= 14) {
+  if (id < 14) {
     id++;
     let result = ischecked(id - 1);
     //Test de l'assertion coché
@@ -217,16 +218,15 @@ next.addEventListener("click", () => {
 
     iterate(id);
     text.textContent = id + 1 + "/15";
+    identifiants.push(id);
     //appel de la méthode inaccess
-    function renvoie() {
-      return id;
-    }
   } else {
     Affichage();
   }
   reset_radio("radios");
   inaccessButton();
 });
+
 //fonction affichage
 function Affichage() {
   let iconereussite = document.querySelector("i");
@@ -323,20 +323,35 @@ function debuter() {
   }
   const progress = document.querySelector("#progress");
   const time = document.querySelector(".time-counter");
-  var counter = 60;
+  let counter = 60;
 
   function progression() {
     counter--;
     if (counter == -1) {
       clearInterval(intervalId);
-      // iterate("1");
-      // debuter();
+      //recupère contenu label(radio) 1
+      const val = op1lbl.textContent;
+      for (let i = 0; i < Questions.length; i++) {
+        if (val == Questions[i].a[0].text) {
+          var takeid = Questions[i].id;
+        }
+      }
+      // alert("takeid " + takeid + "val " + val);
+      if (id < 14) {
+        iterate(takeid + 1);
+        text.textContent = takeid + 2 + "/15";
+        debuter();
+        id++;
+        alert("takeid " + takeid + " id " + id);
+      } else {
+        Affichage();
+      }
     } else {
       time.textContent = counter;
       progress.style.width = counter * 1.6667 + "%";
     }
   }
-  intervalId = setInterval(progression, 1000);
+  intervalId = setInterval(progression, 60); //1000
 }
 
 //rendre le bouton suivant accessible
